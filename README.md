@@ -5,6 +5,7 @@ The repository contains the primary products from my article entitled "Curry in 
 
 ## Apply solution
 There are three files implemented using the `apply()` method of the function object.
+
 * Defined number of Arguments
 * Undefined number of Arguments
 * Combined solution handles both of the above.
@@ -13,6 +14,7 @@ This approach permits the supply of more than one argument at a time but retains
 
 ## Bind solution
 There are three files implemented using the `bind()` method of the function object.
+
 * Defined number of Arguments
 * Undefined number of Arguments
 * Combined solution handles both of the above.
