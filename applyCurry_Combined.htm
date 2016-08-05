@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<!-- link href='.css' rel='stylesheet' type='text/css'/ -->
+	<style></style>
+</head><body>
+
+	<!-- script src='.js'></script -->
+	<script>
+		"use strict";
+
+		// Exercise 1: Calculates the volume of a box given the size of the 3 dimensions
+		function calcVolume( width, depth, length) {
+			return width* depth* length;
+		}
+
+		// Exerise 2: Compile progress log and issue consolidated report
+		function recordProgressLog() {
+			var arrLog = [].slice.call(arguments);
+			return "\t"+ arrLog.join("\n\t");
+		}
+
+		function curry( fn) {
+			var args = [];
+			var argc = fn.length;
+			return function _pa() {
+				args= args.concat( [].slice.call(arguments));
+				return (argc && (args.length >= argc)) ||
+					(!argc && !arguments.length)?
+						fn.apply( null, args): _pa;
+			};
+		}
+
+		(function(){
+		// Exercise 1
+			var smallBoxVol = curry(calcVolume)( 3, 4);		// CF
+			console.log( smallBoxVol(6));					// 12x 6 = 72
+
+			var meduimBoxVol = curry(calcVolume)( 3)( 5);	// CF
+			console.log( meduimBoxVol(6));					// 15x 6 = 90
+
+			var squareBoxArea = curry(calcVolume)( 5);		// PA
+			var squareBoxVol = squareBoxArea( 5);			// CF
+			console.log( squareBoxVol(6));					// 25x 6 = 150
+
+		// Exercise 2
+			var recordProgress= curry(recordProgressLog);
+			recordProgress = recordProgress('Alpha');
+			recordProgress = recordProgress('Bravo');
+			recordProgress = recordProgress('Charlie');
+			recordProgress = recordProgress('Delta');
+
+			console.log( 'Report:\n'+ recordProgress());
+		})();
+	</script>
+</body></html>

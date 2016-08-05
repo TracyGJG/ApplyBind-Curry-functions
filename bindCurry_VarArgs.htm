@@ -1,0 +1,41 @@
+<!doctype html>
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<!-- link href='.css' rel='stylesheet' type='text/css'/ -->
+	<style></style>
+</head><body>
+
+	<!-- script src='.js'></script -->
+	<script>
+		"use strict";
+
+		// Exerise 2: Compile progress log and issue consolidated report
+		function recordProgressLog() {
+			var arrLog = [].slice.call(arguments);
+			return "\t"+ arrLog.join("\n\t");
+		}
+
+		function curry(fn) {
+			return function _curry(fn_) {
+				return function(arg) {
+					return arguments.length?
+						_curry(fn_.bind(null,arg)):
+						fn_();
+				};
+			}(fn);
+		}
+
+		(function(){
+		// Exercise 2
+			var recordProgress= curry(recordProgressLog);
+			recordProgress = recordProgress('Alpha');
+			recordProgress = recordProgress('Bravo');
+			recordProgress = recordProgress('Charlie');
+			recordProgress = recordProgress('Delta');
+
+			console.log( 'Report:\n'+ recordProgress());
+		})();
+	</script>
+</body></html>

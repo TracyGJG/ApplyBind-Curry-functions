@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title></title>
+	<!-- link href='.css' rel='stylesheet' type='text/css'/ -->
+	<style></style>
+</head><body>
+
+	<!-- script src='.js'></script -->
+	<script>
+		"use strict";
+
+		// Exercise 1: Calculates the volume of a box given the size of the 3 dimensions
+		function calcVolume( width, depth, length) {
+			return width* depth* length;
+		}
+
+		function curry( fn) {
+			var argc=(fn.length -1);
+			return function _curry( fn_) {
+				return function( arg) {
+					return --argc?
+						_curry(fn_.bind( null, arg)):
+						fn_.bind( null, arg);
+				};
+			}( fn);
+		}
+
+		(function(){
+		// Exercise 1
+			var smallBoxVol = curry(calcVolume)( 3)( 4);	// CF
+			console.log( smallBoxVol(6));			// 12x 6 = 72
+
+			var meduimBoxVol = curry(calcVolume)( 3)( 5);	// CF
+			console.log( meduimBoxVol(6));			// 15x 6 = 90
+
+			var squareBoxArea = curry(calcVolume)( 5);	// PA
+			var squareBoxVol = squareBoxArea( 5);		// CF
+			console.log( squareBoxVol(6));			// 25x 6 = 150
+		})();
+	</script>
+</body></html>
